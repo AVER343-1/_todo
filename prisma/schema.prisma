@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = "mongodb+srv://as:asdasdasd@cluster0.ph0nf.mongodb.net/test"
+}
+
+enum STATUS {
+  COMPLETED
+  INCOMPLETE
+  ONGOING
+  IN_REVIEW
+  DELETED
+  POSTPONED
+}
+
+model Tasks {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  description String
+  title       String
+  status      STATUS
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+}
+
+enum RESOURCE_TYPE {
+  IMAGE
+  VIDEO
+}
+
+enum REACTIONS {
+  LIKE
+  DISLIKE
+  LOVE
+  INSIGHTFUL
+  ANGRY
+}
+
+model Reactions {
+  resource   RESOURCE_TYPE
+  reaction   REACTIONS
+  User       String
+  id         String        @id @default(auto()) @map("_id") @db.ObjectId
+  Resource   Resource      @relation(fields: [resourceId], references: [id])
+  resourceId String        @db.ObjectId
+}
+
+model Resource {
+  id        String      @id @default(auto()) @map("_id") @db.ObjectId
+  type      String
+  reactions Reactions[]
+}

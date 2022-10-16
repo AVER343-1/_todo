@@ -1,18 +1,17 @@
 /** @format */
 
 import { Grid, Collapse, Text, Avatar } from "@nextui-org/react";
-import { I_TODO } from "./home.types";
-
-export function TaskList({ tasks }: { tasks: I_TODO[] }) {
+import { I_Task } from "./home.types";
+export function TaskList({ tasks }: { tasks: I_Task[] }) {
   return (
     <Grid.Container gap={2}>
       <Grid>
         <Collapse.Group splitted>
           {tasks.map((e) => (
             <Collapse
-              key={e.task.added_on.toISOString()}
-              title={e.task.title}
-              subtitle={e.task.subtitle}
+              key={e.id}
+              title={e.title}
+              subtitle={e.subtitle}
               contentLeft={
                 <Avatar
                   size="lg"
@@ -25,7 +24,7 @@ export function TaskList({ tasks }: { tasks: I_TODO[] }) {
                 />
               }
             >
-              {e.task.description}
+              {e.description}
             </Collapse>
           ))}
         </Collapse.Group>

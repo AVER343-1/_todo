@@ -5,7 +5,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { E_STATUS, I_TODO } from "./home.types";
+import { E_STATUS, I_Task } from "./home.types";
 import { TaskList } from "./task-list";
 import { _tasks } from "./tasks";
 {
@@ -22,19 +22,18 @@ import { _tasks } from "./tasks";
         </a>
       </footer> */
 }
-export const HomeComponent: NextPage = () => {
-  const [tasks, setTasks] = useState<I_TODO[]>([]);
-  useEffect(() => {
-    if (
-      localStorage.getItem("tasks") &&
-      localStorage.getItem("tasks")?.trim() != "" &&
-      JSON.parse(localStorage.getItem("tasks") || "[]")
-    ) {
-      setTasks(JSON.parse(localStorage.getItem("tasks") || "[]"));
-    }
+export const HomeComponent = ({ tasks = [] }: { tasks?: I_Task[] }) => {
+  //   useEffect(() => {
+  //     if (
+  //       localStorage.getItem("tasks") &&
+  //       localStorage.getItem("tasks")?.trim() != "" &&
+  //       JSON.parse(localStorage.getItem("tasks") || "[]")
+  //     ) {
+  //       setTasks(JSON.parse(localStorage.getItem("tasks") || "[]"));
+  //     }
 
-    setTasks(_tasks);
-  }, []);
+  //     setTasks(_tasks);
+  //   }, []);
   return (
     <Grid.Container gap={2} justify="center">
       <Grid>
