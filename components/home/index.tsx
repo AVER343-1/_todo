@@ -36,7 +36,7 @@ export const HomeComponent = ({ tasks = [] }: { tasks?: I_Task[] }) => {
   //   }, []);
   return (
     <Grid.Container gap={2} justify="center">
-      <Grid>
+      <Grid style={{ width: "90%" }}>
         <TaskList tasks={tasks} />
       </Grid>
     </Grid.Container>
