@@ -8,8 +8,8 @@ export const getAllTasks = async () => {
   let tasks: any = await prisma.tasks.findMany({});
   tasks = tasks.map((e: I_Task) => ({
     ...e,
-    created_at: e.created_at.toISOString(),
-    updated_at: e.updated_at.toISOString(),
+    created_at: String(e.created_at),
+    updated_at: String(e.updated_at),
   }));
   return tasks;
 };
