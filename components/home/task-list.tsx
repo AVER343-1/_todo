@@ -7,7 +7,6 @@ export function TaskList({ tasks }: { tasks: I_Task[] }) {
   const [tasksSeen, setTasksSeen] = useState(1);
   return (
     <Collapse.Group splitted>
-      {tasksSeen}
       {tasks.map((e, index) => (
         <Collapse
           key={e.id}
